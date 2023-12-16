@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <utility>
+#include <iterator>
 
 namespace cmd {
     void printd_arg(const auto& delim, bool is_first, const auto& arg) {
@@ -23,5 +24,15 @@ namespace cmd {
 
     void print(auto&&... args) {
         printd(' ', args...);
+    }
+
+    void printg(const auto& arg) {
+        for (const auto& row : arg) {
+            std::cout << *std::begin(row);
+            for (auto it = std::next(std::cbegin(row)); it != std::cend(row); ++it) {
+                std::cout << ' ' << *it;
+            }
+            std::cout << '\n';
+        }
     }
 };
