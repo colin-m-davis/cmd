@@ -26,13 +26,30 @@ namespace cmd {
         printd(' ', args...);
     }
 
-    void printg(const auto& arg) {
-        for (const auto& row : arg) {
-            std::cout << *std::begin(row);
-            for (auto it = std::next(std::cbegin(row)); it != std::cend(row); ++it) {
-                std::cout << ' ' << *it;
-            }
-            std::cout << '\n';
+    template <typename It>
+    void printr(It begin, It end, const std::string& delim = " ") {
+        std::cout << *begin;
+        for (auto it = std::next(begin); it != end; ++it) {
+            std::cout << delim << *it;
         }
+        std::cout << '\n';
+    }
+    
+    void printl(const auto& l, const std::string& delim = " ") {
+        std::cout << *std::begin(l);
+        for (auto it = std::next(std::cbegin(l)); it != std::cend(l); ++it) {
+            std::cout << delim << *it;
+        }
+        std::cout << '\n';
+    }
+
+    void printg(const auto& g, const std::string& delim = " ") {
+        for (const auto& row : g) {
+            printl(row, delim);
+        }
+    }
+
+    void sep() {
+        std::cout << "~~~~\n";
     }
 };

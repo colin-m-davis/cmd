@@ -30,14 +30,14 @@ namespace cmd {
         return tokens;
     }
 
-    auto split(const std::string& s, const std::string& d) -> std::vector<std::string> {
+    auto split(const std::string& s, const std::string& delim) -> std::vector<std::string> {
         std::vector<std::string> tokens;
         std::string::size_type start = 0;
-        auto end = s.find(d, start);
+        auto end = s.find(delim, start);
         while (end != std::string::npos) {
             tokens.push_back(std::move(s.substr(start, end - start)));
-            start = end + d.length();
-            end = s.find(d, start);
+            start = end + delim.length();
+            end = s.find(delim, start);
         }
         tokens.push_back(s.substr(start, end - start));
         return tokens;
