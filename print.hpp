@@ -24,6 +24,4 @@ namespace cmd {
     void print(auto&&... args) {
         printd(' ', args...);
     }
-
-    
 };
